@@ -31,7 +31,7 @@ class _RegrasState extends State<Regras> {
         child: Icon(Icons.add),
         backgroundColor: Colors.blueAccent,
       ),
-      body: null
+      body: Text('data')
     );
   }
 
