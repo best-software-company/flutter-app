@@ -453,5 +453,4 @@ class _RegrasState extends State<Regras> {
       },
     );
   }
-  //popup
 }

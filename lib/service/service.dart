@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:home_tasks/model/regra.dart';
+import 'package:home_tasks/model/rotina.dart';
 import 'package:home_tasks/model/tarefa.dart';
 import 'package:home_tasks/model/usuario.dart';
 import 'package:home_tasks/model/casa.dart';
@@ -210,11 +211,38 @@ class Service {
     tk = tk.substring(1, tk.length-1);
     print(regra.toJson());
     final response = await client.put("http://35.247.234.136/hometasks/api/v1/rules/",headers: {'token': tk,'Content-type': 'application/json','Accept': 'application/json'},body: json.encode(regra));    
-    print(response.statusCode);
     if(response.statusCode==204){
       return true;
     }
     return false;
+  }
+
+  Future<bool> postRotine(Rotina rotina) async {
+    String tk = verificarAcesso();
+    tk = tk.substring(1, tk.length-1);
+    print(rotina.toJson());
+    final response = await client.post("http://35.247.234.136/hometasks/api/v1/routines/",headers: {'token': tk,'Content-type': 'application/json','Accept': 'application/json'},body: json.encode(rotina));    
+    print(response.statusCode);
+    if(response.statusCode==201){
+      return true;
+    }
+    return false;
+  }
+
+  Future<List<Rotina>> getRotinas() async {
+    String tk = verificarAcesso();
+    tk = tk.substring(1, tk.length-1);
+    final response = await client.get("http://35.247.234.136/hometasks/api/v1/routines/",headers: {'token': tk,'Content-type': 'application/json','Accept': 'application/json'});    
+    print(response.statusCode);
+    if(response.statusCode==200){
+      List<Rotina> rotinas = List();
+      var serverRotina = json.decode(response.body);
+      for(int i=0;i<serverRotina.length;i++){
+        rotinas.add(Rotina.fromJson(serverRotina[i]));
+      }
+      return rotinas;    
+    }
+    return null;
   }
 
 }
