@@ -39,7 +39,6 @@ class Service {
     String tk = verificarAcesso();
     tk = tk.substring(1, tk.length-1);
     final response = await client.put("http://35.247.234.136/hometasks/api/v1/users/",headers: {'token': tk,'Content-type': 'application/json'},body: json.encode(usuario));    
-    print(usuario.toJson());
     if(response.statusCode==204){
       
       return true;
@@ -102,7 +101,6 @@ class Service {
     String tk = verificarAcesso();
     tk = tk.substring(1, tk.length-1);
     final response = await client.post("http://35.247.234.136/hometasks/api/v1/home/",headers: {'token': tk,'Content-type': 'application/json'},body: json.encode(casa));    
-    print(response.statusCode);
     if(response.statusCode==201){
       return true;
     }
@@ -113,7 +111,6 @@ class Service {
     String tk = verificarAcesso();
     tk = tk.substring(1, tk.length-1);
     final response = await client.put("http://35.247.234.136/hometasks/api/v1/home/",headers: {'token': tk,'Content-type': 'application/json'},body: json.encode(casa));    
-    print(response.statusCode);
     if(response.statusCode==204){
       
       return true;
@@ -152,9 +149,7 @@ class Service {
     String tk = verificarAcesso();
     tk = tk.substring(1, tk.length-1);
     final response = await client.post("http://35.247.234.136/hometasks/api/v1/tasks/",headers: {'token': tk,'Content-type': 'application/json','Accept': 'application/json'},body: json.encode(tarefa));    
-    print(response.statusCode);
     if(response.statusCode==201){
-      print(response.body);
       return true;
     }
     return false;
@@ -179,9 +174,7 @@ class Service {
     String tk = verificarAcesso();
     tk = tk.substring(1, tk.length-1);
     final response = await client.put("http://35.247.234.136/hometasks/api/v1/tasks/",headers: {'token': tk,'Content-type': 'application/json','Accept': 'application/json'},body: json.encode(tarefa));    
-    print(response.statusCode);
     if(response.statusCode==204){
-      print(response.body);
       return true;
     }
     return false;
@@ -191,9 +184,7 @@ class Service {
     String tk = verificarAcesso();
     tk = tk.substring(1, tk.length-1);
     final response = await client.post("http://35.247.234.136/hometasks/api/v1/rules/",headers: {'token': tk,'Content-type': 'application/json','Accept': 'application/json'},body: json.encode(regra));    
-    print(response.statusCode);
     if(response.statusCode==201){
-      print(response.body);
       return true;
     }
     return false;
@@ -202,7 +193,7 @@ class Service {
   Future<List<Regra>> getRules() async {
     String tk = verificarAcesso();
     tk = tk.substring(1, tk.length-1);
-    final response = await client.get("http://35.247.234.136/hometasks/api/v1/tasks/",headers: {'token': tk,'Content-type': 'application/json','Accept': 'application/json'});    
+    final response = await client.get("http://35.247.234.136/hometasks/api/v1/rules/",headers: {'token': tk,'Content-type': 'application/json','Accept': 'application/json'});    
     if(response.statusCode==200){
       List<Regra> rules = List();
       var serverRule = json.decode(response.body);
@@ -217,10 +208,10 @@ class Service {
   Future<bool> putRules(Regra regra) async {
     String tk = verificarAcesso();
     tk = tk.substring(1, tk.length-1);
-    final response = await client.put("http://35.247.234.136/hometasks/api/v1/tasks/",headers: {'token': tk,'Content-type': 'application/json','Accept': 'application/json'},body: json.encode(regra));    
+    print(regra.toJson());
+    final response = await client.put("http://35.247.234.136/hometasks/api/v1/rules/",headers: {'token': tk,'Content-type': 'application/json','Accept': 'application/json'},body: json.encode(regra));    
     print(response.statusCode);
     if(response.statusCode==204){
-      print(response.body);
       return true;
     }
     return false;

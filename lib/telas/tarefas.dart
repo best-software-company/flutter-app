@@ -37,10 +37,9 @@ class _TarefasState extends State<Tarefas>{
   Future<Null> _handleRefresh() async {
     await new Future.delayed(new Duration(seconds: 1));
     //atualiza
-    setState((){
       if(this.i == 1) tarefas('aberta',1);
       else tarefas('finalizada',2);
-    });
+      setState((){});
     return null;
   }
 
@@ -304,6 +303,7 @@ class _TarefasState extends State<Tarefas>{
     ],);
     
   }
+  
   setTasks(Tarefa tarefa){
     nome.text = tarefa.nome;
     descricao.text = tarefa.descricao;
@@ -450,7 +450,6 @@ class _TarefasState extends State<Tarefas>{
       },
     );
   }
-
 
   Widget tarefas(String estado, int x){
     return FutureBuilder(

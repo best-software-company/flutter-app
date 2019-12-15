@@ -3,6 +3,7 @@ import 'package:home_tasks/model/usuario.dart';
 import 'package:home_tasks/service/service.dart';
 import 'package:home_tasks/telas/casa.dart';
 import 'package:home_tasks/telas/perfil.dart';
+import 'package:home_tasks/telas/regras.dart';
 import 'package:home_tasks/telas/rotinas.dart';
 import 'package:home_tasks/telas/tarefas.dart';
 
@@ -83,7 +84,7 @@ class _MenuState extends State<Menu> {
             title:   Text('Regras'),
             trailing: Icon(Icons.receipt),
             onTap: () {
-              
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Regras()),);
             },
           ),
           ListTile(

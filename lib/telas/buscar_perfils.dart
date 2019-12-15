@@ -19,19 +19,16 @@ class _SearchPerfilsState extends State<SearchPerfils> {
   Service service = Service();
 
   _SearchPerfilsState() {
-    _searchEdit.addListener(() {
+    _searchEdit.addListener(() async {
       if (_searchEdit.text.isEmpty) {
-        setState(() {
-          _isSearch = true;
-          _searchText = "";
-        });
+        _isSearch = true;
+        _searchText = "";
       } else {
-        setState(() async {
-          _isSearch = false;
-          _searchText = _searchEdit.text;
-          _socialListItems = await service.getUsers(_searchText);
-        });
+        _isSearch = false;
+        _searchText = _searchEdit.text;
+        _socialListItems = await service.getUsers(_searchText);
       }
+      setState((){});
     });
   }
 

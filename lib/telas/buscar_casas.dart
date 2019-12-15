@@ -28,18 +28,16 @@ class _SearchHomesState extends State<SearchHomes> {
   }
 
   _SearchHomesState() {
-    _searchEdit.addListener(() {
+    _searchEdit.addListener(() async {
       if (_searchEdit.text.isEmpty){
-        setState(() {
-          _isSearch = true;
-          _searchText = "";
-        });
+        _isSearch = true;
+        _searchText = "";
+        setState((){});
       } else {
-        setState(() async {
-          _isSearch = false;
-          _searchText = _searchEdit.text;
-          _socialListItems = await service.getHomes(_searchText);
-        });
+        _isSearch = false;
+        _searchText = _searchEdit.text;
+        _socialListItems = await service.getHomes(_searchText);
+        setState((){});
       }
     });
   }

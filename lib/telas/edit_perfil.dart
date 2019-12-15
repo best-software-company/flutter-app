@@ -130,16 +130,7 @@ class _EditPerfilState extends State<EditPerfil> {
                   labelText: "Telefone",
                 ),
               ),
-              SizedBox(height: 20.0), 
-              TextFormField(
-                controller: _perfil,
-                keyboardType: TextInputType.text,
-                validator: (_perfil) => _perfil.isEmpty ? 'Perfil cannot be blank':null,
-                autofocus: false,
-                decoration: new InputDecoration(
-                  labelText: "Perfil",
-                ),
-              ),
+              
               SizedBox(height: 20.0),
               RaisedButton(child: Text("Atualizar"), onPressed: () async {
                 final form = _formKey.currentState;
@@ -150,7 +141,7 @@ class _EditPerfilState extends State<EditPerfil> {
                 user.email = _email.text;
                 //user.genero = _genero;
                 user.data = _data.text;
-                user.perfil = _perfil.text;
+                //user.perfil = _perfil.text;
                 user.telefone = _telefone.text;
 
                 if (form.validate()) {

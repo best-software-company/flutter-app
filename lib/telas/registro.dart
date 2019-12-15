@@ -18,7 +18,6 @@ class _RegisterState extends State<Register> {
   var _usuario = TextEditingController();
   var _data = TextEditingController();
   var _telefone = TextEditingController();
-  var _perfil = TextEditingController();
   String _genero;
   bool newUser = false;
   Usuario user = new Usuario();
@@ -114,16 +113,6 @@ class _RegisterState extends State<Register> {
                     labelText: "Telefone",
                   ),
                 ),
-                SizedBox(height: 20.0), 
-                TextFormField(
-                  controller: _perfil,
-                  keyboardType: TextInputType.text,
-                  validator: (_perfil) => _perfil.isEmpty ? 'Perfil cannot be blank':null,
-                  autofocus: false,
-                  decoration: new InputDecoration(
-                    labelText: "Perfil",
-                  ),
-                ),
                 SizedBox(height: 20.0),
                 RaisedButton(child: Text("Registrar-se"), onPressed: () async {
                   final form = _formKey.currentState;
@@ -134,7 +123,7 @@ class _RegisterState extends State<Register> {
                   user.email = _email.text;
                   user.genero = _genero;
                   user.data = _data.text;
-                  user.perfil = _perfil.text;
+                  user.perfil = 'Nenhuma residencia cadastrada neste perfil';
                   user.telefone = _telefone.text;
 
                   if (form.validate()) {
